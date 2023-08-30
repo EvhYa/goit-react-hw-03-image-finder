@@ -32,7 +32,7 @@ export const SearchForm = styled.form`
     width: 48px;
     height: 48px;
     border: 0;
-    background-image: url('../../img/search.svg');
+    background-image: url('././img/search.svg');
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
