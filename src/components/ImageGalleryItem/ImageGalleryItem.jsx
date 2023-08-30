@@ -1,9 +1,14 @@
 import { GalleryItem } from './ImageGalleryItem.styled';
 
-export function ImageGalleryItem({ pictures, onShowModal }) {
-  return pictures.map(({ id, webformatURL, largeImageURL, tags }) => (
-    <GalleryItem key={id} onClick={onShowModal}>
-      <img src={webformatURL} alt={tags} />
+export function ImageGalleryItem({
+  webformatURL,
+  largeImageURL,
+  tags,
+  onShowModal,
+}) {
+  return (
+    <GalleryItem onClick={()=>onShowModal(largeImageURL, tags)}>
+      <img src={webformatURL} alt={tags} url={largeImageURL} />
     </GalleryItem>
-  ));
+  );
 }

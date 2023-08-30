@@ -15,6 +15,8 @@ export class App extends Component {
     loadMore: false,
     loader: false,
     showModal: false,
+    largeImageURL: '',
+    tags: '',
   };
 
   onSearchRequestSubmit = request => {
@@ -24,6 +26,7 @@ export class App extends Component {
       page: 1,
       loadMore: false,
       loader: false,
+      largeImageURL: '',
     });
   };
 
@@ -53,8 +56,12 @@ export class App extends Component {
     }));
   };
 
-  onShowModal = () => {
-    this.setState({ showModal: true });
+  onShowModal = (largeImageURL, tags )=> {
+    this.setState({
+      showModal: true,
+      largeImageURL,
+      tags,
+    });
   };
 
   onCloseModal = () => {
@@ -67,11 +74,17 @@ export class App extends Component {
         <GlobalStyle />
         <Searchbar onSearchRequestSubmit={this.onSearchRequestSubmit} />
         {this.state.pictures.length > 0 && (
-          <ImageGallery pictures={this.state.pictures} onShowModal={this.onShowModal} />
+          <ImageGallery
+            pictures={this.state.pictures}
+            onShowModal={this.onShowModal}
+          />
         )}
         {this.state.loadMore && <LoadButton onLoadMore={this.onLoadMore} />}
         {this.state.loader && <Loader />}
+
         <ImageModal
+          largeImageURL={this.state.largeImageURL}
+          tags={this.state.tags}
           showModal={this.state.showModal}
           onCloseModal={this.onCloseModal}
         />
