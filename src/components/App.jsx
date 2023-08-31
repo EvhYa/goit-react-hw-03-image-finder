@@ -41,11 +41,10 @@ export class App extends Component {
           return this.setState(prevState => ({
             pictures: [...prevState.pictures, ...response.data.hits],
             loadMore: this.state.page < Math.ceil(response.data.totalHits / 12),
-            loader: false,
           }));
         })
         .catch(error => console.log(error.message))
-        .finally();
+        .finally(() => this.setState({ loader: false }));
     }
   }
 
@@ -56,7 +55,7 @@ export class App extends Component {
     }));
   };
 
-  onShowModal = (largeImageURL, tags )=> {
+  onShowModal = (largeImageURL, tags) => {
     this.setState({
       showModal: true,
       largeImageURL,
